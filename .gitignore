@@ -1,0 +1,38 @@
+# Compiled Cython / C extensions
+*.pyd
+*.so
+*.c
+*.pyxbld
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Distribution
+*.whl
+
+# IDE
+.vscode/
+.idea/
+
+# Old development files (superseded by the package structure)
+margin_tree.py
+margin_splitter.pyx
+margin_splitter.c
+margin_splitter.pyxbld
+margin_splitter.cp311-win_amd64.pyd
+setup_splitter.py
