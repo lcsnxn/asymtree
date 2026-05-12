@@ -1,1 +1,1 @@
-include threshold_trees/_splitter.pyx
+include asymtree/_splitter.pyx

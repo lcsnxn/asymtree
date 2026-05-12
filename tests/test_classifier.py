@@ -15,7 +15,7 @@ from sklearn.datasets import make_classification
 from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeClassifier
 
-from threshold_trees import AsymmetryDecisionTreeClassifier
+from asymtree import AsymmetryDecisionTreeClassifier
 
 
 # ---------------------------------------------------------------------------

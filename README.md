@@ -1,10 +1,10 @@
-# threshold-trees
+# asymtree
 
 A scikit-learn compatible decision tree classifier that rewards splits where one side's centroid is pulled far from the splitting boundary — **centroid asymmetry**.
 
 ## Motivation
 
-Standard decision trees choose splits purely on impurity (Gini / entropy). A split that perfectly separates classes but places both centroids equidistant from the boundary is treated the same as one where nearly all of one class is packed tightly on one side. `threshold-trees` exposes this asymmetry as an explicit objective, so you can tune how aggressively the tree favors interpretable, one-sided splits.
+Standard decision trees choose splits purely on impurity (Gini / entropy). A split that perfectly separates classes but places both centroids equidistant from the boundary is treated the same as one where nearly all of one class is packed tightly on one side. `asymtree` exposes this asymmetry as an explicit objective, so you can tune how aggressively the tree favors interpretable, one-sided splits.
 
 ## Mathematical background
 
@@ -40,7 +40,7 @@ search — no extra pass over the data.
 ## Installation
 
 ```bash
-pip install threshold-trees
+pip install asymtree
 ```
 
 **Requirements**: Python ≥ 3.9, scikit-learn ≥ 1.4, numpy ≥ 1.21.  
@@ -49,7 +49,7 @@ A C compiler and Cython ≥ 3.0 are needed to build from source.
 ## Quick start
 
 ```python
-from threshold_trees import AsymmetryDecisionTreeClassifier
+from asymtree import AsymmetryDecisionTreeClassifier
 
 # Additive mode: impurity + 0.5 × asymmetry
 clf = AsymmetryDecisionTreeClassifier(
