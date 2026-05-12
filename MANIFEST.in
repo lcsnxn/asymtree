@@ -1,1 +1,2 @@
 include asymtree/_splitter.pyx
+include asymtree/_splitter.c

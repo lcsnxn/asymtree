@@ -1,8 +1,9 @@
 # Compiled Cython / C extensions
 *.pyd
 *.so
-*.c
 *.pyxbld
+# Intermediate C files (except the pre-generated splitter included in sdist)
+margin_splitter.c
 
 # Build artifacts
 build/
