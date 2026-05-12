@@ -28,8 +28,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/lucasxavier/asymtree"
-Issues = "https://github.com/lucasxavier/asymtree/issues"
+Homepage = "https://github.com/lcsnxn/asymtree"
+Issues = "https://github.com/lcsnxn/asymtree/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]
