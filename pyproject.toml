@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=64", "numpy>=1.21"]
+requires = ["setuptools>=64", "numpy>=1.21,<2"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "asymtree"
-version = "0.1.6"
+version = "0.1.7"
 description = "Decision tree classifier with centroid-asymmetry split criterion"
 readme = "README.md"
 license = "MIT"
