@@ -5,11 +5,30 @@ on:
     types: [published]
 
 jobs:
-  publish:
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pypa/cibuildwheel@v2.21
+        env:
+          CIBW_BUILD: cp39-* cp310-* cp311-* cp312-*
+          CIBW_SKIP: "*-musllinux* *-win32"
+          CIBW_BEFORE_BUILD: pip install numpy scikit-learn cython
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cibw-wheels-${{ matrix.os }}
+          path: ./wheelhouse/*.whl
+
+  build_sdist:
+    name: Build source distribution
     runs-on: ubuntu-latest
-    environment: release
-    permissions:
-      id-token: write  # required for trusted publishing (no token needed)
 
     steps:
       - uses: actions/checkout@v4
@@ -19,10 +38,28 @@ jobs:
           python-version: "3.11"
 
       - name: Install build dependencies
-        run: pip install build numpy scikit-learn
+        run: pip install build numpy scikit-learn cython
 
       - name: Build sdist
         run: python -m build --sdist
 
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cibw-sdist
+          path: dist/*.tar.gz
+
+  publish:
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cibw-*
+          path: dist
+          merge-multiple: true
+
+      - uses: pypa/gh-action-pypi-publish@release/v1

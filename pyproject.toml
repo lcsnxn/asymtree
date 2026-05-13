@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=64", "numpy>=1.21", "scikit-learn>=1.4"]
+requires = ["setuptools>=64", "numpy>=1.21", "scikit-learn>=1.4", "cython>=3.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
