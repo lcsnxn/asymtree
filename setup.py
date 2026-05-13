@@ -9,17 +9,22 @@ except ImportError:
     USE_CYTHON = False
 
 import numpy as np
-import sklearn
 
-site_pkgs = os.path.dirname(os.path.dirname(sklearn.__file__))
 extra_compile_args = ["/O2"] if sys.platform == "win32" else ["-O2"]
 
-src = "asymtree/_splitter.pyx" if USE_CYTHON else "asymtree/_splitter.c"
+if USE_CYTHON:
+    import sklearn
+    site_pkgs = os.path.dirname(os.path.dirname(sklearn.__file__))
+    include_dirs = [np.get_include(), site_pkgs]
+    src = "asymtree/_splitter.pyx"
+else:
+    include_dirs = [np.get_include()]
+    src = "asymtree/_splitter.c"
 
 ext = Extension(
     "asymtree._splitter",
     sources=[src],
-    include_dirs=[np.get_include(), site_pkgs],
+    include_dirs=include_dirs,
     extra_compile_args=extra_compile_args,
 )
 
