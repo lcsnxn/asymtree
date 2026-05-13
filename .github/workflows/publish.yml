@@ -19,6 +19,7 @@ jobs:
         env:
           CIBW_BUILD: cp39-* cp310-* cp311-* cp312-*
           CIBW_SKIP: "*-musllinux* *-win32"
+          CIBW_BUILD_VERBOSITY: 1
 
       - uses: actions/upload-artifact@v4
         with:
