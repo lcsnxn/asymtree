@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "asymtree"
-version = "0.1.7"
+version = "0.1.8"
 description = "Decision tree classifier with centroid-asymmetry split criterion"
 readme = "README.md"
-license = "MIT"
+license = {text = "MIT"}
 authors = [{ name = "Lucas Xavier", email = "lucas.nqxavier@gmail.com" }]
 requires-python = ">=3.9"
 dependencies = [
