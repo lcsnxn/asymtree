@@ -45,6 +45,7 @@ class AsymmetryDecisionTreeClassifier(DecisionTreeClassifier):
         min_samples_leaf=1,
         max_features=None,
         random_state=None,
+        min_impurity_decrease=0.0,
         lambda_=1.0,
         eps_impurity=1e-4,
         lexicographic=False,
@@ -56,6 +57,7 @@ class AsymmetryDecisionTreeClassifier(DecisionTreeClassifier):
             min_samples_leaf=min_samples_leaf,
             max_features=max_features,
             random_state=random_state,
+            min_impurity_decrease=min_impurity_decrease,
             **kwargs,
         )
         self.lambda_ = lambda_
@@ -100,7 +102,7 @@ class AsymmetryDecisionTreeClassifier(DecisionTreeClassifier):
             min_samples_leaf=self.min_samples_leaf,
             min_weight_leaf=0.0,
             max_depth=self.max_depth if self.max_depth else 2**31 - 1,
-            min_impurity_decrease=0.0,
+            min_impurity_decrease=self.min_impurity_decrease,
         )
 
         X_f32 = np.asarray(X, dtype=np.float32, order="C")
